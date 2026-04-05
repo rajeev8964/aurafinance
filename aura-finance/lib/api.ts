@@ -9,11 +9,11 @@ if (!API_KEY) {
 const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
   const url = `${API_BASE_URL}${endpoint}`;
 
-  const headers = {
-    'Content-Type': 'application/json',
-    'x-api-key': API_KEY,
-    ...options.headers,
-  };
+  const headers = new Headers(options.headers as HeadersInit);
+  headers.set('Content-Type', 'application/json');
+  if (API_KEY) {
+    headers.set('x-api-key', API_KEY);
+  }
 
   const config: RequestInit = {
     ...options,

@@ -60,7 +60,7 @@ export default function Pricing() {
         }
     ];
 
-    const containerVariants = {
+    const containerVariants: any = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -70,7 +70,7 @@ export default function Pricing() {
         }
     };
 
-    const cardVariants = {
+    const cardVariants: any = {
         hidden: { opacity: 0, y: 50 },
         visible: {
             opacity: 1,

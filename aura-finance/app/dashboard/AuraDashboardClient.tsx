@@ -6,7 +6,7 @@ import { Wallet, ArrowDownLeft, Plus, PieChart, ShieldCheck, Target, Calendar, C
 
 const AuraDashboard = () => {
   const [selectedPeriod, setSelectedPeriod] = useState('30d');
-  const [animatedValues, setAnimatedValues] = useState({
+  const [animatedValues, setAnimatedValues] = useState<Record<string, number>>({
     balance: 0,
     spend: 0,
     savings: 0
@@ -45,7 +45,7 @@ const AuraDashboard = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const formatCurrency = (amount) => {
+  const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD'

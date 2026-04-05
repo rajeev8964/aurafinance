@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Sparkles, CheckCircle, XCircle, AlertCircle, User } from "lucide-react";
 
@@ -11,8 +11,8 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [showSuccess, setShowSuccess] = useState(false);
 
   // Typing animation for welcome text
@@ -32,7 +32,7 @@ export default function Signup() {
     return () => clearInterval(timer);
   }, []);
 
-  const validateField = (name, value) => {
+  const validateField = (name: string, value: string) => {
     const newErrors = { ...errors };
     switch (name) {
       case "fullName":
@@ -65,7 +65,7 @@ export default function Signup() {
     setErrors(newErrors);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "email") setEmail(value);
     if (name === "password") setPassword(value);
@@ -75,12 +75,12 @@ export default function Signup() {
     }
   };
 
-  const handleBlur = (name) => {
+  const handleBlur = (name: string) => {
     setTouched({ ...touched, [name]: true });
     validateField(name, name === "email" ? email : name === "password" ? password : fullName);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setTouched({ email: true, password: true, fullName: true });
     validateField("email", email);
@@ -98,7 +98,7 @@ export default function Signup() {
     }
   };
 
-  const containerVariants = {
+  const containerVariants: any = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
@@ -110,7 +110,7 @@ export default function Signup() {
       }
     }
   };
-  const itemVariants = {
+  const itemVariants: any = {
     hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
@@ -122,7 +122,7 @@ export default function Signup() {
       }
     }
   };
-  const floatingVariants = {
+  const floatingVariants: any = {
     animate: {
       y: [0, -20, 0],
       rotate: [0, 5, -5, 0],

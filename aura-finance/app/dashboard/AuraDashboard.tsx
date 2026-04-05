@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Wallet, ArrowDownLeft, Plus, PieChart, ShieldCheck } from 'lucide-react';
+import { Wallet, ArrowDownLeft, Plus, PieChart, ShieldCheck, TrendingUp } from 'lucide-react';
 
 const AuraDashboard = () => {
 

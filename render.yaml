@@ -5,8 +5,8 @@ services:
     branch: backend
     root: backend
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
     autoDeploy: true
     envVars:
       - key: PORT

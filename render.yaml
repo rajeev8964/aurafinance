@@ -2,10 +2,17 @@ services:
   - type: web
     name: aurafinance-backend
     env: node
-    branch: backend
+    branch: main
     root: backend
     plan: free
-    buildCommand: cd backend && npm install
+    buildCommand: |
+      cd ../aura-finance
+      export NEXT_PUBLIC_API_URL=''
+      npm ci
+      npm run build
+      cp -r out ../backend/public
+      cd ../backend
+      npm install
     startCommand: cd backend && npm start
     autoDeploy: true
     envVars:

@@ -51,6 +51,9 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from public directory (frontend)
+app.use(express.static('public'));
+
 // Routes
 app.get('/', (req, res) => {
   res.json({ message: 'AuraFinance Backend API' });
@@ -111,4 +114,12 @@ app.post('/api/transactions', authenticateApiKey, async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+// Catch-all handler: send back index.html for any non-API routes (for SPA)
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+  res.sendFile(__dirname + '/public/index.html');
 });
